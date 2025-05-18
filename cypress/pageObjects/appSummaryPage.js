@@ -9,7 +9,7 @@ export class appSummaryPage extends BasePage{
     }
 
     static get checkReadmission() {
-        return cy.get("p#chk_hospital_readmission");
+        return cy.get("p#hospital_readmission");
     }
 
     static get checkProgram() {
