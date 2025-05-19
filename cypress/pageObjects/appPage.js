@@ -31,4 +31,6 @@ export class AppointmentPage extends BasePage{
     static get menuButton() {
         return cy.get("a#menu-toggle");
     }
+
+    
 }

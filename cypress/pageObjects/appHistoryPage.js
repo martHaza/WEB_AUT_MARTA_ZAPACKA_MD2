@@ -7,4 +7,12 @@ export class HistoryPage extends BasePage{
     static validateNoAppointment() {
         return cy.get("section#history").should("contain", "No appointment.");
     }
+
+    static validateSidebar() {
+        return cy.get("nav#sidebar-wrapper").should("have.class", "active");
+    }
+
+    static get historyButton() {
+        return cy.get('[href="history.php#history"]');
+    }
 }
