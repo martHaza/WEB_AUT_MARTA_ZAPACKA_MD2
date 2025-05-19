@@ -20,6 +20,10 @@ export class AppointmentPage extends BasePage{
         return cy.get("input#txt_visit_date");
     }
 
+    static get calendarDay() {
+        return cy.get('[class = "day"]').contains(number);
+    }
+
     static get commentField() {
         return cy.get("textarea#txt_comment");
     }
