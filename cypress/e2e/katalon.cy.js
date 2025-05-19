@@ -18,6 +18,7 @@ describe('katalon-demo-cura scenarios', () => {
     appPage.medicaidRadioButton();
     appPage.calendar.click();
     const day = '30';
+    appPage.calendarDay(day).click();
     const comment = 'CURA Healthcare Service';
     appPage.commentField.type(comment);
     appPage.bookAppointmentButton.click();
