@@ -1,7 +1,8 @@
-const { appPage } = require("../pageObjects/appPage");
-const { appSummaryPage } = require("../pageObjects/appSummaryPage");
-const { appHistoryPage } = require("../pageObjects/appHistoryPage");
-const { loginPage } = require("../pageObjects/loginPage")
+import { appPage } from "../pageObjects/appPage";
+import { appSummaryPage } from "../pageObjects/appSummaryPage";
+import { appHistoryPage } from "../pageObjects/appHistoryPage";
+import { loginPage } from "../pageObjects/loginPage";
+import { basePage } from "../pageObjects/basePage";
 
 describe('katalon-demo-cura scenarios', () => {
   it('Scenario 1 - Make an Appointment', () => {
