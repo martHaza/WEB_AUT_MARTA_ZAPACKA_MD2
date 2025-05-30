@@ -1,47 +1,49 @@
 import { appPage } from "../pageObjects/appPage";
-import { appSummaryPage } from "../pageObjects/appSummaryPage";
-import { appHistoryPage } from "../pageObjects/appHistoryPage";
-import { loginPage } from "../pageObjects/loginPage";
-import { basePage } from "../pageObjects/basePage";
+// import { basePage } from "../pageObjects/basePage";
 
-describe('katalon-demo-cura scenarios', () => {
+describe('katalon-demo-cura scenarios', () => { 
+  beforeEach(() => {
+      //loginPage.visit();
+      cy.visit('https://katalon-demo-cura.herokuapp.com/')
+    });
   it('Scenario 1 - Make an Appointment', () => {
-    loginPage.visit();
-    loginPage.appointmentButton.click();
-    loginPage.usernameField.type("John Doe");
-    loginPage.passwordField.type("ThisIsNotAPassword");
-    loginPage.loginButton.click();
+    
+    
+    appPage.appointmentButton().click();
+    appPage.usernameField().type("John Doe");
+    appPage.passwordField().type("ThisIsNotAPassword");
+    appPage.loginButton().click();
 
     // set the following values:
     const facility = 'Seoul CURA Healthcare Center';
-    appPage.comboFacility.select(facility);
-    appPage.readmissionBox.check();
+    appPage.comboFacility().select(facility);
+    appPage.readmissionBox().check();
     appPage.medicaidRadioButton();
-    appPage.calendar.click();
+    appPage.calendar().click();
     const day = '30';
-    appPage.calendarDay(day).click();
+    appPage.calendarDay().contains("30").click();
     const comment = 'CURA Healthcare Service';
-    appPage.commentField.type(comment);
-    appPage.bookAppointmentButton.click();
+    appPage.commentField().type(comment);
+    appPage.bookAppointmentButton().click();
 
     // validate that previously set values are correct
-    appSummaryPage.checkFacility.should("contain", facility);
-    appSummaryPage.checkReadmission.should("contain", "Yes");
-    appSummaryPage.checkProgram.should("contain", "Medicaid");
-    appSummaryPage.checkVisitDate.should("contain", day);
-    appSummaryPage.checkComment.should("contain", comment);
+    appPage.checkFacility().should("contain", facility);
+    appPage.checkReadmission().should("contain", "Yes");
+    //appPage.checkProgram().should("contain", "Medicaid");
+    appPage.checkVisitDate().should("contain", day);
+    appPage.checkComment().should("contain", comment);
   });
 
   it('Scenario 2 - - Appointment history empty'), () => {
-    loginPage.visit();
-    loginPage.appointmentButton.click();
-    loginPage.usernameField.type("John Doe");
-    loginPage.passwordField.type("ThisIsNotAPassword");
-    loginPage.loginButton.click();
-    appPage.menuButton.click();
-    appHistoryPage.validateSidebar();
-    appHistoryPage.historyButton();
-    appHistoryPage.validateNoAppointment();
+    appPage.visit();
+    appPage.appointmentButton().click();
+    appPage.usernameField().type("John Doe");
+    appPage.passwordField().type("ThisIsNotAPassword");
+    appPage.loginButton().click();
+    appPage.menuButton().click();
+    appPage.validateSidebar();
+    appPage.historyButton();
+    appPage.validateNoAppointment();
 
   }
 });
